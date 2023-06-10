@@ -1,6 +1,34 @@
-.TodoApp {}
+.TodoApp {
+  padding: 20px;
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+.addTodo {
+  padding: 10px;
+  border-radius: 100%;
+  background-color: #1a8bff;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #027bf5;
+
+  }
+}
 
 .task {
+  display: grid;
+  padding-top: 5px;
+
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
   cursor: pointer;
 
   &:hover {
@@ -8,12 +36,16 @@
   }
 }
 
+.name {
+  padding-right: 20px;
+}
+
 .subTask {
   padding-left: 10px;
   cursor: pointer;
 
   &:hover {
-    background-color: aqua;
+    background-color: wheat;
   }
 }
 
