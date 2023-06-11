@@ -1,19 +1,46 @@
 .TodoApp {
   padding: 20px;
-  border: 1px solid;
   border-radius: 10px;
+  background-color: #fffeff;
+  filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+  color: #c7c7c9;
+
 }
 
 .addTodo {
-  padding: 10px;
+  padding: 8px;
   border-radius: 100%;
   background-color: #1a8bff;
   border: none;
   cursor: pointer;
+  filter: drop-shadow(0 5px 4px rgb(26 139 255 / 0.07)) drop-shadow(0 3px 3px rgb(26 139 255 / 0.06));
+  transition: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 
   &:hover {
     background-color: #027bf5;
 
+  }
+}
+
+.todoList {
+  padding-right: 20px;
+  border-right: 1px solid;
+}
+
+.plus {
+  padding-top: 2px;
+}
+
+.btnShow {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding-right: 5px;
+
+  &:hover {
+    color: gray;
   }
 }
 
@@ -24,16 +51,32 @@
 }
 
 .forms {
+  width: 170px;
   display: flex;
   flex-direction: column;
 }
 
 .list {
+  width: 176px;
+  padding-bottom: 15px;
+}
+
+.item {
   cursor: pointer;
+  border-radius: 5px;
+  position: relative;
 
   &:hover {
-    background-color: aqua;
+    background-color: #ebf7ff;
+    color: #5fa2ff;
   }
+
+}
+
+.checkbox {
+  position: absolute;
+  right: 3px;
+  top: 3px;
 }
 
 .name {
@@ -49,9 +92,13 @@
   }
 }
 
-.todoInfo {
+.todo {
   display: flex;
-  gap: 50px;
+}
+
+.todoInfo {
+  padding-left: 20px;
+  width: 170px;
 }
 
 .input {
