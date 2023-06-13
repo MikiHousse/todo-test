@@ -1,5 +1,5 @@
 'use client';
-import { FC, useState } from 'react';
+import { FC, MouseEventHandler, useState } from 'react';
 import cls from './TodoApp.module.scss';
 import { observer } from 'mobx-react-lite';
 import { ITodo } from '@/store/TodoStore';
@@ -12,56 +12,59 @@ const TodoApp: FC = observer(() => {
 	const [addTodo, setAddTodo] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 
-	const handleAddTodoClick = () => {
+	const handleOpenModalClick = () => {
 		todoStore.reset();
 		setIsOpen(true);
 		setAddTodo(true);
 	};
 
+	const handleSelectClick = (id: number) => {
+		todoStore.selectTodo(id);
+		setAddTodo(false);
+	};
+
+	const handleAddTodoClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+		e.preventDefault();
+		todoStore.addTodo();
+		setIsOpen(false);
+	};
+
 	return (
 		<>
-			<div className={cls.TodoApp}>
-				<div className={cls.todo}>
-					<div className={cls.todoList}>
-						{todoStore.todoList.map((el: ITodo) => (
-							<div
-								key={el.id}
-								className={cls.list}
-								onClick={() => {
-									todoStore.selectTodo(el.id);
-									setAddTodo(false);
-								}}>
-								<div className={cls.item}>
-									<button className={cls.btnShow} onClick={() => todoStore.showTodo(el.id)}>
-										{el.show ? <AiFillCaretDown /> : <AiFillCaretUp />}
-									</button>
-									<span className={cls.name}>
-										{el.id}. {el.name}
-									</span>
-									<input className={cls.checkbox} type='checkbox' defaultChecked={el.done} />
-								</div>
-								{el.show ? (
-									<div>
-										{el.subtodo?.map((el) => {
-											return <span>{el.name}</span>;
-										})}
-										<button className={cls.addSubTask}>Add a subtask</button>
-									</div>
-								) : (
-									''
-								)}
+			<div className={cls.todoApp}>
+				<div className={cls.todoList}>
+					{todoStore.todoList.map((el: ITodo) => (
+						<div key={el.id} className={cls.todoItem} onClick={() => handleSelectClick(el.id)}>
+							<div className={cls.todoName}>
+								<button onClick={() => todoStore.showTodo(el.id)}>
+									{el.show ? <AiFillCaretDown /> : <AiFillCaretUp />}
+								</button>
+								<span>
+									{el.id}. {el.name}
+								</span>
+								<input className={cls.checkbox} type='checkbox' defaultChecked={el.done} />
 							</div>
-						))}
-						<div>
-							<button className={cls.addTodo} onClick={handleAddTodoClick}>
-								<BsPlusLg className={cls.plus} size={40} color='white' />
-							</button>
+							{el.show ? (
+								<div>
+									{el.subtodo?.map((el) => {
+										return <span>{el.name}</span>;
+									})}
+									<button className={cls.addSubTodo}>Add a subtodo</button>
+								</div>
+							) : (
+								''
+							)}
 						</div>
+					))}
+					<div>
+						<button className={cls.plusBtn} onClick={handleOpenModalClick}>
+							<BsPlusLg className={cls.plus} size={30} color='white' />
+						</button>
 					</div>
-					<div className={cls.todoInfo}>
-						<h2>{todoStore.todo.name === undefined ? '' : todoStore.todo.name}</h2>
-						<p>{todoStore.todo.description}</p>
-					</div>
+				</div>
+				<div className={cls.todoInfo}>
+					<h3>{todoStore.todo.name === undefined ? '' : todoStore.todo.name}</h3>
+					<p>{todoStore.todo.description}</p>
 				</div>
 			</div>
 			{addTodo ? (
@@ -85,14 +88,7 @@ const TodoApp: FC = observer(() => {
 							/>
 						</form>
 						<div className={cls.addTodoBtn}>
-							<button
-								onClick={(e) => {
-									e.preventDefault();
-									todoStore.addTodo();
-									setIsOpen(false);
-								}}>
-								Add Task
-							</button>
+							<button onClick={handleAddTodoClick}>Add Task</button>
 						</div>
 					</div>
 				</Modal>

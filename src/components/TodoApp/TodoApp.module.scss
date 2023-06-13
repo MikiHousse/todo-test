@@ -1,13 +1,57 @@
-.TodoApp {
+.todoApp {
+  display: flex;
+  color: #c7c7c9;
   padding: 20px;
   border-radius: 10px;
   background-color: #fffeff;
   filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
-  color: #c7c7c9;
 }
 
-.addTodo {
-  padding: 5px;
+.todoList {
+  padding-right: 20px;
+  border-right: 1px solid;
+}
+
+.todoItem {
+  width: 170px;
+  padding-bottom: 15px;
+}
+
+.todoName {
+  border-radius: 5px;
+  position: relative;
+  padding: 6px;
+
+  &:hover {
+    background-color: rgb(238 242 255);
+    color: rgb(167 139 250);
+  }
+
+  span {
+    padding-right: 20px;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding-right: 5px;
+
+    &:hover {
+      color: gray;
+    }
+  }
+
+  input {
+    cursor: pointer;
+    position: absolute;
+    right: 8px;
+    top: 9px;
+  }
+}
+
+.plusBtn {
+  padding: 4px 5px 4px 5px;
   border-radius: 100%;
   background-color: rgb(99 102 241);
   border: none;
@@ -26,30 +70,18 @@
   }
 }
 
-.todoList {
-  padding-right: 20px;
-  border-right: 1px solid;
-}
-
 .plus {
   padding-top: 3px;
 }
 
-.btnShow {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding-right: 5px;
+.todoInfo {
+  padding-left: 20px;
+  width: 190px;
+  color: black;
 
-  &:hover {
-    color: gray;
+  h3 {
+    padding-bottom: 15px;
   }
-}
-
-.task {
-  display: grid;
-  padding-top: 5px;
-
 }
 
 .forms {
@@ -58,58 +90,11 @@
   flex-direction: column;
 }
 
-.list {
-  width: 176px;
-  padding-bottom: 15px;
-}
-
-.item {
-  cursor: pointer;
-  border-radius: 5px;
-  position: relative;
-  padding: 6px;
-
-  &:hover {
-    background-color: rgb(238 242 255);
-    color: rgb(167 139 250);
-  }
-
-}
-
-.checkbox {
-  position: absolute;
-  right: 8px;
-  top: 9px;
-}
-
-.name {
-  padding-right: 20px;
-}
-
-.subTask {
-  padding-left: 10px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: wheat;
-  }
-}
-
-.todo {
-  display: flex;
-}
-
-.todoInfo {
-  padding-left: 20px;
-  width: 170px;
-  color: black;
-}
-
 .modalForm {
   display: grid;
 }
 
-.addSubTask {
+.addSubTodo {
   padding-left: 20px;
   border: none;
   background: none;
