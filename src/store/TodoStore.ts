@@ -50,6 +50,9 @@ class TodoStore {
 			subtodo: [],
 		};
 	}
+	reset() {
+		this.todo = this.resetTodoData();
+	}
 
 	constructor() {
 		makeAutoObservable(this);

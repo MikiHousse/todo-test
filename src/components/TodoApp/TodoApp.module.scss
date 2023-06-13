@@ -4,14 +4,16 @@
   background-color: #fffeff;
   filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
   color: #c7c7c9;
-
 }
 
 .addTodo {
-  padding: 8px;
+  padding: 5px;
   border-radius: 100%;
-  background-color: #1a8bff;
+  background-color: rgb(99 102 241);
   border: none;
+  text-align: center;
+  display: inline-block;
+  margin: 4px 2px;
   cursor: pointer;
   filter: drop-shadow(0 5px 4px rgb(26 139 255 / 0.07)) drop-shadow(0 3px 3px rgb(26 139 255 / 0.06));
   transition: all;
@@ -19,7 +21,7 @@
   transition-duration: 300ms;
 
   &:hover {
-    background-color: #027bf5;
+    background-color: rgb(79 70 229);
 
   }
 }
@@ -30,7 +32,7 @@
 }
 
 .plus {
-  padding-top: 2px;
+  padding-top: 3px;
 }
 
 .btnShow {
@@ -51,7 +53,7 @@
 }
 
 .forms {
-  width: 170px;
+  width: 300px;
   display: flex;
   flex-direction: column;
 }
@@ -65,18 +67,19 @@
   cursor: pointer;
   border-radius: 5px;
   position: relative;
+  padding: 6px;
 
   &:hover {
-    background-color: #ebf7ff;
-    color: #5fa2ff;
+    background-color: rgb(238 242 255);
+    color: rgb(167 139 250);
   }
 
 }
 
 .checkbox {
   position: absolute;
-  right: 3px;
-  top: 3px;
+  right: 8px;
+  top: 9px;
 }
 
 .name {
@@ -99,8 +102,60 @@
 .todoInfo {
   padding-left: 20px;
   width: 170px;
+  color: black;
 }
 
-.input {
+.modalForm {
   display: grid;
+}
+
+.addSubTask {
+  padding-left: 20px;
+  border: none;
+  background: none;
+  padding-top: 10px;
+  font-size: 16px;
+  color: #c7c7c9;
+  cursor: pointer;
+
+  &:hover {
+    color: rgb(167 139 250);
+  }
+}
+
+.inputModal {
+  padding-left: 2px;
+  padding-bottom: 3px;
+  border: none;
+  border-bottom: 2px solid rgb(196 181 253);
+  font-size: 16px;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+.textareModal {
+  padding-left: 2px;
+  outline: none;
+  border-color: rgb(196 181 253);
+  font-size: 16px;
+}
+
+.addTodoBtn {
+  padding-top: 20px;
+
+  button {
+    font-size: 16px;
+    border: none;
+    background-color: rgb(99 102 241);
+    padding: 12px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: all;
+    transition-duration: 300ms;
+
+    &:hover {
+      background-color: rgb(79 70 229);
+    }
+  }
 }

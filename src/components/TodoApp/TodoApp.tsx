@@ -10,24 +10,17 @@ import Modal from '../Modal/Modal';
 
 const TodoApp: FC = observer(() => {
 	const [addTodo, setAddTodo] = useState(false);
-	const [todoInfo, setTodoInfo] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handleAddTodoClick = () => {
+		todoStore.reset();
 		setIsOpen(true);
 		setAddTodo(true);
-		setTodoInfo(false);
 	};
 
 	return (
 		<>
 			<div className={cls.TodoApp}>
-				{/* <div>
-				<form>
-					<input type="text" />
-					<button onClick={todoStore.addSubtodo(el.id , el.name)}></button>
-				</form>
-			</div> */}
 				<div className={cls.todo}>
 					<div className={cls.todoList}>
 						{todoStore.todoList.map((el: ITodo) => (
@@ -37,7 +30,6 @@ const TodoApp: FC = observer(() => {
 								onClick={() => {
 									todoStore.selectTodo(el.id);
 									setAddTodo(false);
-									setTodoInfo(true);
 								}}>
 								<div className={cls.item}>
 									<button className={cls.btnShow} onClick={() => todoStore.showTodo(el.id)}>
@@ -53,21 +45,7 @@ const TodoApp: FC = observer(() => {
 										{el.subtodo?.map((el) => {
 											return <span>{el.name}</span>;
 										})}
-										<form>
-											<input
-												type='text'
-												onChange={(e) => {
-													todoStore.todo.name = e.target.value;
-												}}
-											/>
-											<button
-												onClick={(e) => {
-													e.preventDefault();
-													todoStore.addSubtodo();
-												}}>
-												add
-											</button>
-										</form>
+										<button className={cls.addSubTask}>Add a subtask</button>
 									</div>
 								) : (
 									''
@@ -76,15 +54,10 @@ const TodoApp: FC = observer(() => {
 						))}
 						<div>
 							<button className={cls.addTodo} onClick={handleAddTodoClick}>
-								<BsPlusLg className={cls.plus} size={30} color='white' />
+								<BsPlusLg className={cls.plus} size={40} color='white' />
 							</button>
 						</div>
 					</div>
-					{/* {todoInfo ? (
-
-					) : (
-						''
-					)} */}
 					<div className={cls.todoInfo}>
 						<h2>{todoStore.todo.name === undefined ? '' : todoStore.todo.name}</h2>
 						<p>{todoStore.todo.description}</p>
@@ -93,27 +66,34 @@ const TodoApp: FC = observer(() => {
 			</div>
 			{addTodo ? (
 				<Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-					{' '}
 					<div className={cls.forms}>
-						<form className={cls.input}>
+						<form className={cls.modalForm}>
 							<input
+								placeholder='Todo title'
+								className={cls.inputModal}
 								type='text'
 								value={todoStore.todo.name}
 								onChange={(e) => (todoStore.todo.name = e.target.value)}
 							/>
-							<input
-								type='textarea'
+							<textarea
+								className={cls.textareModal}
+								placeholder='Describe the task'
+								rows={5}
+								cols={100}
 								value={todoStore.todo.description}
 								onChange={(e) => (todoStore.todo.description = e.target.value)}
 							/>
 						</form>
-						<button
-							onClick={(e) => {
-								e.preventDefault();
-								todoStore.addTodo();
-							}}>
-							Add Task
-						</button>
+						<div className={cls.addTodoBtn}>
+							<button
+								onClick={(e) => {
+									e.preventDefault();
+									todoStore.addTodo();
+									setIsOpen(false);
+								}}>
+								Add Task
+							</button>
+						</div>
 					</div>
 				</Modal>
 			) : (
