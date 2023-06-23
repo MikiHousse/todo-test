@@ -1,0 +1,13 @@
+.Button {
+  outline: none;
+  background-color: var(--button-color);
+  border: none;
+  padding: 10px 15px 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+
+  &:hover {
+    background-color: var(--hover-button-color);
+  }
+}
